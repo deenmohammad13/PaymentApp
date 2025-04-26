@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PaymentDetailService } from '../../shared/payment-detail.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { PaymentDetail } from '../../shared/payment-detail.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment-details-form',
@@ -11,13 +12,14 @@ import { PaymentDetail } from '../../shared/payment-detail.model';
 })
 export class PaymentDetailsFormComponent {
 
-   constructor(public service : PaymentDetailService){}
+   constructor(public service : PaymentDetailService, private toastr:ToastrService){}
   
    onSubmit(form:NgForm){
     this.service.postPaymentDetail()
     .subscribe({
-      next : res => {this.service.list = res as PaymentDetail[]
+      next : res => {this.service.refreshList()
         this.service.resetForm(form)
+        this.toastr.success('Inserted Successfully','Payment Detail Register')
       },
       error : err => {console.log(err);}
     })

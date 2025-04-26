@@ -15,10 +15,6 @@ export class PaymentDetailsComponent implements OnInit {
   constructor(public service : PaymentDetailService){}
   ngOnInit(): void {
     this.service.refreshList();
-    this.service.getPaymentDetail()
-    .subscribe({
-      next: res => {this.service.list = res as PaymentDetail[]},
-      error: err => {console.log(err);}
-    })
+    
   }
 }

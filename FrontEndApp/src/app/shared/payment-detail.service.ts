@@ -16,9 +16,9 @@ export class PaymentDetailService {
 
   constructor(private http: HttpClient) { }
   refreshList(){
-    this.http.get(this.url)
+    this.getPaymentDetail()
     .subscribe({
-      next: res => {this.list= res as PaymentDetail[]
+      next: res => {this.list = res as PaymentDetail[]
       },
       error : err => {console.log(err);
       }
