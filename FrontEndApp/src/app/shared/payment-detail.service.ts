@@ -39,7 +39,7 @@ export class PaymentDetailService {
   resetForm(form : NgForm){
     form.form.reset()
     this.formData = new PaymentDetail()
-    this.formSubmitted = false;
+    this.formSubmitted = false
   }
   getPaymentDetail(){
     return this.http.get(this.url)
